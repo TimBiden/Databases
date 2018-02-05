@@ -1,8 +1,8 @@
 1.  A Clockwork Orange:     Varchar
-    42:                     Tinyint
+    42:                     Smallint
     09/02/1945:             Date
-    98.7:                   Decimal
-    15.99:                  Decimal
+    98.7:                   Numeric
+    15.99:                  Numeric
 
 2.  A database OR textfile could be used when you need to store, retrieve, or manipulate data from different computing sessions and only 1 person will be manipulating the data at one time. A database needs to be used when there may be multiple users manipulating the data simultaneously.
 
@@ -15,7 +15,7 @@
     Column: Vertical lines of cells that hold a specific kind of data for each entry.
     Value:  The data in a given cell.
 
-6.  Char, Text, Tinyint
+6.  Char, Text, Smallint
 
 7.  SELECT date, amount
     FROM payments;
