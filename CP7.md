@@ -37,9 +37,83 @@
     JOIN compensation AS c
     ON p.id = c.professor_id;
 
-6.  
+6.  Use a NATURAL join to only show each column once.
 
-7.  
+    A postal database may have 2-10 people living at the same address. If you have a table of every house in a zipcode and a table of each person in the city who has received mail, you wouldn't need to show the `house number` and `street name` columns twice.
+
+7.  workschedule=# SELECT * FROM employees;                                      
+     id  |     first_name      
+    -----+---------------------
+     001 |  Pinski Dwayne
+     002 |  Kellerman Collette
+     003 |  Steelgrave Allen
+     004 |  Branski Mike
+     005 |  Alvarez German
+     006 |  Yamaguchi Emiko
+     007 |  Schmidt Clint
+     008 |  Rubio Estrella
+     009 |  Marley R. N.
+    (9 rows)
+
+    workschedule=# SELECT * FROM shifts;
+        day    
+    -----------
+     Monday
+     Tuesday
+     Wednesday
+     Thursday
+     Friday
+    (5 rows)
+
+    workschedule=# SELECT * FROM employees CROSS JOIN shifts;                                      
+     id  |     first_name      |    day    
+    -----+---------------------+-----------
+     001 |  Pinski Dwayne      | Monday
+     002 |  Kellerman Collette | Monday
+     003 |  Steelgrave Allen   | Monday
+     004 |  Branski Mike       | Monday
+     005 |  Alvarez German     | Monday
+     006 |  Yamaguchi Emiko    | Monday
+     007 |  Schmidt Clint      | Monday
+     008 |  Rubio Estrella     | Monday
+     009 |  Marley R. N.       | Monday
+     001 |  Pinski Dwayne      | Tuesday
+     002 |  Kellerman Collette | Tuesday
+     003 |  Steelgrave Allen   | Tuesday
+     004 |  Branski Mike       | Tuesday
+     005 |  Alvarez German     | Tuesday
+     006 |  Yamaguchi Emiko    | Tuesday
+     007 |  Schmidt Clint      | Tuesday
+     008 |  Rubio Estrella     | Tuesday
+     009 |  Marley R. N.       | Tuesday
+     001 |  Pinski Dwayne      | Wednesday
+     002 |  Kellerman Collette | Wednesday
+     003 |  Steelgrave Allen   | Wednesday
+     004 |  Branski Mike       | Wednesday
+     005 |  Alvarez German     | Wednesday
+     006 |  Yamaguchi Emiko    | Wednesday
+     007 |  Schmidt Clint      | Wednesday
+     008 |  Rubio Estrella     | Wednesday
+     009 |  Marley R. N.       | Wednesday
+     001 |  Pinski Dwayne      | Thursday
+     002 |  Kellerman Collette | Thursday
+     003 |  Steelgrave Allen   | Thursday
+     004 |  Branski Mike       | Thursday
+     005 |  Alvarez German     | Thursday
+     006 |  Yamaguchi Emiko    | Thursday
+     007 |  Schmidt Clint      | Thursday
+     008 |  Rubio Estrella     | Thursday
+     009 |  Marley R. N.       | Thursday
+     001 |  Pinski Dwayne      | Friday
+     002 |  Kellerman Collette | Friday
+     003 |  Steelgrave Allen   | Friday
+     004 |  Branski Mike       | Friday
+     005 |  Alvarez German     | Friday
+     006 |  Yamaguchi Emiko    | Friday
+     007 |  Schmidt Clint      | Friday
+     008 |  Rubio Estrella     | Friday
+     009 |  Marley R. N.       | Friday
+    (45 rows)
 
 8.  
 
