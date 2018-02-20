@@ -115,7 +115,65 @@
      009 |  Marley R. N.       | Friday
     (45 rows)
 
-8.  
+8.  petadoptions=# SELECT volunteers.name, dogs.name
+    petadoptions-# FROM volunteers
+    petadoptions-# JOIN dogs
+    petadoptions-# ON volunteers.foster_id = dogs.id;
+           name       |  name   
+    ------------------+---------
+      Claudia Randall |  Piglet
+      Alice Uphus     |  Willi
+      Roger Waltman   |  Walter
+    (3 rows)
+
+    petadoptions=# SELECT adopter, dog FROM adoptions                                                        
+    WHERE date >= NOW() - interval '1 month';
+        adopter     |   dog   
+    ----------------+---------
+      David Gilmour |  Walter
+      Jason Brown   |  Vader
+    (2 rows)
+
+    petadoptions=# SELECT adopters.first_name, adopters.last_name, dogs.name
+    petadoptions-# FROM adoptions
+    petadoptions-# RIGHT JOIN adopters ON adopters.id = adoptions.adopter
+    petadoptions-# CROSS JOIN dogs
+    petadoptions-# WHERE adoptions.dog IS NULL AND adoptions.adopter IS NULL;
+     first_name | last_name |   name   
+    ------------+-----------+----------
+     Wilson     | Matt      | Piglet
+     Benitez    | Gio       | Piglet
+     Wilson     | Matt      | Shelby
+     Benitez    | Gio       | Shelby
+     Wilson     | Matt      | Walter
+     Benitez    | Gio       | Walter
+     Wilson     | Matt      | Shelly
+     Benitez    | Gio       | Shelly
+     Wilson     | Matt      | Fratello
+     Benitez    | Gio       | Fratello
+     Wilson     | Matt      | Houdini
+     Benitez    | Gio       | Houdini
+     Wilson     | Matt      | Vader
+     Benitez    | Gio       | Vader
+     Wilson     | Matt      | Willi
+     Benitez    | Gio       | Willi
+    (16 rows)
+
+    petadoptions=# SELECT dogs.name, cats.cat
+    petadoptions-# FROM adoptions
+    petadoptions-# RIGHT JOIN dogs ON dogs.name = adoptions.dog
+    petadoptions-# FULL OUTER JOIN cats on cats.cat = adoptions.cat
+    petadoptions-# WHERE cats.adoption_date IS NULL
+    petadoptions-# AND adoptions.dog IS NULL;
+       name   |  cat   
+    ----------+--------
+     Shelly   |
+     Fratello |
+     Shelby   |
+     Houdini  |
+              | Ralph
+              | Target
+    (6 rows)
 
 9.  
 
