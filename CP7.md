@@ -175,6 +175,32 @@
               | Target
     (6 rows)
 
-9.  
+    petadoptions=# SELECT volunteers.name AS fosters, dogs.name AS dogs
+    petadoptions-# FROM volunteers
+    petadoptions-# FULL OUTER JOIN dogs ON volunteers.foster_id = dogs.id
+    petadoptions-# WHERE available_to_foster IS TRUE
+    petadoptions-# OR dogs.in_foster IS FALSE;
+         fosters     |   dogs   
+    -----------------+----------
+     Claudia Randall | Piglet
+     Marie Fields    | Walter
+     Alice Uphus     | Houdini
+     Roger Waltman   | Willi
+     Jason Brown     |
+                     | Shelby
+                     | Vader
+                     | Fratello
+                     | Shelly
+    (9 rows)
+
+9.  petadoptions=# SELECT first_name AS "First Name", last_name AS "Last Name"
+    petadoptions-# FROM adopters
+    petadoptions-# INNER JOIN adoptions ON adopters.id = adoptions.adopter
+    petadoptions-# INNER JOIN cats ON adoptions.adopter = cats.adopter
+    petadoptions-# WHERE cats.cat = 'Seashell';
+     First Name | Last Name
+    ------------+-----------
+     Marie      | Fields
+    (1 row)
 
 10.  
