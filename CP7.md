@@ -203,4 +203,73 @@
      Marie      | Fields
     (1 row)
 
-10.  
+10. library=# SELECT patrons.name, holds.rank
+    library-# FROM holds
+    library-# INNER JOIN books ON holds.isbn = books.isbn
+    library-# INNER JOIN patrons ON holds.user_id = patrons.id
+    library-# WHERE books.title = 'Harry Potter and the Sorcerers Stone'
+    library-# ORDER BY holds.rank;
+           name       | rank
+    ------------------+------
+     Larue Lafountain |    1
+     Leontine Roma    |    2
+     Lori A. Coleman  |    3
+    (3 rows)
+
+    library=# SELECT books.title AS Book,
+    library-#     CASE
+    library-#         WHEN transactions.checked_in_date IS NULL
+    library-#             THEN 'Yes'
+    library-#             ELSE 'No'
+    library-#         END
+    library-#     AS Checked_Out
+    library-# FROM books
+    library-# INNER JOIN transactions ON books.isbn = transactions.isbn
+    library-# ORDER BY books.title;
+                                 book                             | checked_out
+    --------------------------------------------------------------+-------------
+     Audio Engineering 101: A Beginners Guide to Music Production | No
+     Benny Comes Home                                             | No
+     Benny Comes Home                                             | No
+     Brave New World                                              | Yes
+     Catch-22                                                     | No
+     Food of the Gods                                             | No
+     Food of the Gods                                             | No
+     Harry Potter and the Sorcerers Stone                         | No
+     Harry Potter and the Sorcerers Stone                         | No
+     Loudspeakers: For music recording and reproduction           | Yes
+     Loudspeakers: For music recording and reproduction           | No
+     Loudspeakers: For music recording and reproduction           | No
+     Rubiks Cube Best Algorithms: Top 5 Speedcubing Methods       | No
+     Rubiks Cube Best Algorithms: Top 5 Speedcubing Methods       | Yes
+     Rubiks Cube Best Algorithms: Top 5 Speedcubing Methods       | No
+     SQL Queries for Mere Mortals                                 | No
+     SQL Queries for Mere Mortals                                 | No
+     SQL Queries for Mere Mortals                                 | No
+     The 1-Page Marketing Plan                                    | No
+     The 1-Page Marketing Plan                                    | No
+     The 1-Page Marketing Plan                                    | Yes
+     The Great Gatsby                                             | Yes
+     The Lord of the Rings                                        | Yes
+     The Lord of the Rings                                        | No
+     The Lord of the Rings                                        | No
+     The New Rules of Marketing and PR                            | Yes
+     The New Rules of Marketing and PR                            | Yes
+     The New Rules of Marketing and PR                            | No
+     The Two Towers                                               | No
+     The Two Towers                                               | No
+    (30 rows)
+
+    library=# SELECT books.title AS books, books.author AS author, age(transactions.checked_in_date, transactions.checked_out_date) AS Days
+    library-# FROM books
+    library-# RIGHT JOIN transactions ON books.isbn = transactions.isbn
+    library-# WHERE transactions.checked_out_date > CURRENT_DATE - INTERVAL '1 month' AND transactions.checked_in_date IS NOT NULL
+    library-# ORDER BY age(transactions.checked_in_date, transactions.checked_out_date) DESC;
+                   books               |       author        |  days   
+    -----------------------------------+---------------------+---------
+     Food of the Gods                  | Terence McKenna     | 13 days
+     The Two Towers                    | J.R.R. Tolkien      | 10 days
+     The New Rules of Marketing and PR | David Meerman Scott | 4 days
+    (3 rows)
+
+    
