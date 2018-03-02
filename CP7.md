@@ -272,4 +272,19 @@
      The New Rules of Marketing and PR | David Meerman Scott | 4 days
     (3 rows)
 
+    library=# SELECT books.title AS books, books.author AS author, transactions.checked_out_date AS checked_out
+    library-# FROM books
+    library-# LEFT JOIN transactions ON books.isbn = transactions.isbn
+    library-# WHERE transactions.checked_out_date IS NULL OR transactions.checked_out_date < CURRENT_DATE - INTERVAL '5 years' AND books.isbn NOT IN (
+    library(#     SELECT transactions.isbn
+    library(#     FROM transactions
+    library(#     WHERE transactions.checked_out_date > CURRENT_DATE - INTERVAL '5 years'
+    library(# )
+    library-# ORDER BY books.title;
+                                books                             |    author    | checked_out
+    --------------------------------------------------------------+--------------+-------------
+     Audio Engineering 101: A Beginners Guide to Music Production | Tim Dittmar  | 2012-11-06
+     Italian with Ease                                            | Ruby Assimil |
+    (2 rows)
+
     
