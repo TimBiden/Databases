@@ -287,4 +287,37 @@
      Italian with Ease                                            | Ruby Assimil |
     (2 rows)
 
-    
+    library=# SELECT patrons.name, books.title
+    library-# FROM transactions
+    library-# JOIN books ON (books.isbn = transactions.isbn AND transactions.checked_out_date IS NOT NULL AND transactions.checked_in_date IS NULL)
+    library-# RIGHT OUTER JOIN patrons ON transactions.user_id = patrons.id
+    library-# GROUP BY patrons.name, books.title
+    library-# ORDER BY patrons.name;
+             name         |                         title                          
+    ----------------------+--------------------------------------------------------
+     Alease Grider        |
+     Alecia Chalfant      | Brave New World
+     Arlie Glickman       |
+     Belen Wysong         |
+     Berneice Rodenberger |
+     Carita Tardugno      |
+     Christi S. Reese     |
+     Darlene N. Halliday  |
+     Fredda Liang         |
+     Harry Abernethy      | The Lord of the Rings
+     Jolie Engram         | Rubiks Cube Best Algorithms: Top 5 Speedcubing Methods
+     Josh Mitten          |
+     Judie Heffron        | Art of Coloring Star Wars
+     Larue Lafountain     |
+     Lawanna Dey          |
+     Leontine Roma        | The New Rules of Marketing and PR
+     Lori A. Coleman      | The Great Gatsby
+     Nathaniel Winker     |
+     Nicki Steffenson     | The 1-Page Marketing Plan
+     Nikita Berge         | The New Rules of Marketing and PR
+     Nohemi Headlee       |
+     Sherita Alberico     |
+     Stan Brossard        |
+     Wendi Borgen         |
+     Willian Pellot       |
+    (25 rows)
