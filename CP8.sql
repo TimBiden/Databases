@@ -1,7 +1,7 @@
 CREATE TABLE guests (
-    name_first varchar,
-    name_last varchar,
-    email varchar,
+    first_name varchar,
+    last_name varchar,
+    guest_email varchar PRIMARY KEY,
     phone varchar,
     address text
 );
@@ -13,7 +13,7 @@ INSERT INTO guests
     ('Blanca', 'Lee', 'enintend@aol.com', '(525) 600-3387', '70 Hillside St. Canton, GA 30114'),
     ('Doyle', 'Love', 'nichoj@verizon.net', '(975) 986-6294', '68 Old Lantern Court Jamaica, NY 11432'),
     ('Loretta', 'Greene', 'sherzodr@yahoo.ca', '(498) 687-8155', '485 College St. Morganton, NC 28655'),
-    ('Angelo', 'Warner', 'brickbat@aol.com', '(813) 394-3306', '589 Spinnaker Dr Marco Island, FL 34145'),
+    ('Andrea', 'Lynch', 'brickbat@aol.com', '(813) 394-3306', '589 Spinnaker Dr. Marco Island, FL 34145'),
     ('Chelsea', 'Phelps', 'shedr@yahoo.ca', '(909) 993-9644', '7265 Schoolhouse Dr. San Antonio, TX 78213'),
     ('Van', 'Bryan', 'wmszeliga@msn.com', '(343) 695-6603', '8523 Mulberry Lane North Haven, CT 06473'),
     ('Ernestine', 'Ames', 'bcevc@live.com', '(360) 635-8308', '200 NE. Creekside Street Statesville, NC 28625'),
@@ -35,9 +35,8 @@ INSERT INTO guests
     ('Ken', 'Castillo', 'sacraver@sbcglobal.net', '(323) 808-6434', '456 Middle River Ave. Chester, PA 19013');
 
 CREATE TABLE rooms (
-    room_number integer,
-    floor_number integer,
-    price_night integer
+    room_number integer PRIMARY KEY,
+    price_night money
 );
 
 INSERT INTO rooms
@@ -62,14 +61,14 @@ INSERT INTO rooms
     (394, 489),
     (236, 422),
     (370, 533),
-    (288, 488),
+    (289, 488),
     (517, 550),
     (288, 424),
     (128, 380),
     (309, 315),
     (413, 423),
     (139, 470),
-    (285, 286),
+    (286, 286),
     (261, 450),
     (380, 392),
     (178, 440),
@@ -83,7 +82,7 @@ INSERT INTO rooms
     (196, 403),
     (403, 501),
     (221, 261),
-    (282, 498),
+    (285, 498),
     (225, 270),
     (344, 460),
     (509, 562),
@@ -94,34 +93,36 @@ INSERT INTO rooms
     (400, 437);
 
 CREATE TABLE reservations (
+    res_id integer PRIMARY KEY,
+    res_email varchar REFERENCES guests(guest_email),
     check_in date,
     check_out date,
     first_name varchar,
-    guest_last varchar,
-    room_booked integer
+    last_name varchar,
+    room_booked integer REFERENCES rooms(room_number)
 );
 
 INSERT INTO reservations
     VALUES
-    ('3/26/2018', '3/29/2018', 'Laura', 'Burton', 451),
-    ('4/11/2018', '4/21/2018', 'Dallas', 'Jacobs', 281),
-    ('4/13/2018', '4/15/2018', 'Doyle', 'Love', 207),
-    ('4/16/2018',('4/20/2018', 'Blanca', 'Lee', 256),
-    ('4/29/2018', '5/3/2018', 'Loretta', 'Greene', 207),
-    ('6/17/2018', '6/24/2018', 'Angelo', 'Warner', 143),
-    ('6/17/2018', '6/19/2018', 'Chelsea', 'Phelps', 152),
-    ('7/18/2018', '7/24/2018', 'Ernestine', 'Ames', 164),
-    ('8/16/2018', '8/18/2018', 'Isabel', 'Kelly', 132),
-    ('8/23/2018', '8/28/2018', 'Kate', 'Sandoval', 110),
-    ('8/28/2018', '9/7/2018', 'Dallas', 'Jacobs', 410),
-    ('9/1/2018', '9/6/2018', 'Phyllis', 'Gregory', 166),
-    ('10/7/2018', '10/15/2018', 'Edwin', 'Rodriguez', 163),
-    ('10/7/2018', '10/17/2018', 'Tom', 'Pope', 140),
-    ('10/30/2018', '11/3/2018', 'Van', 'Bryan', 362),
-    ('11/2/2018', '11/12/2018', 'Allan', 'Fox', 143),
-    ('11/22/2018', '11/25/2018', 'Shari', 'Fernandez', 256),
-    ('11/25/2018', '11/29/2018', 'Bonnie', 'Webster', 309),
-    ('11/27/2018', '11/28/2018', 'Shane', 'Harvey', 517),
-    ('12/13/2018', '12/21/2018', 'Anne', 'Wells', 178),
-    ('12/24/2018', '12/27/2018', 'Heather', 'Phillips', 238),
-    ('12/27/2018', '1/1/2019', 'Leona', 'Watts', 222);
+    (101, 'tubes@yahoo.com', '3/26/2018', '3/29/2018', 'Laura', 'Burton', 451),
+    (102, 'sbmrjbr@live.com', '4/11/2018', '4/21/2018', 'Dallas', 'Jacobs', 281),
+    (103, 'shedr@yahoo.ca', '4/13/2018', '4/15/2018', 'Doyle', 'Love', 207),
+    (104, 'plover@verizon.net', '4/16/2018', '4/20/2018', 'Blanca', 'Lee', 256),
+    (105, 'enintend@aol.com', '4/29/2018', '5/3/2018', 'Loretta', 'Greene', 207),
+    (106, 'sacraver@sbcglobal.net', '6/17/2018', '6/24/2018', 'Angelo', 'Warner', 143),
+    (107, 'maratb@msn.com', '6/17/2018', '6/19/2018', 'Chelsea', 'Phelps', 152),
+    (108, 'jcholewa@mac.com', '7/18/2018', '7/24/2018', 'Ernestine', 'Ames', 164),
+    (109, 'josephw@yahoo.ca', '8/16/2018', '8/18/2018', 'Isabel', 'Kelly', 132),
+    (110, 'plover@verizon.net', '8/23/2018', '8/28/2018', 'Kate', 'Sandoval', 110),
+    (111, 'monkeydo@live.com', '8/28/2018', '9/7/2018', 'Dallas', 'Jacobs', 410),
+    (112, 'bcevc@live.com', '9/1/2018', '9/6/2018', 'Phyllis', 'Gregory', 166),
+    (113, 'ianbuck@comcast.net', '10/7/2018', '10/15/2018', 'Edwin', 'Rodriguez', 163),
+    (114, 'wmszeliga@msn.com', '10/7/2018', '10/17/2018', 'Tom', 'Pope', 140),
+    (115, 'frosal@verizon.net', '10/30/2018', '11/3/2018', 'Van', 'Bryan', 362),
+    (116, 'world@mac.com', '11/2/2018', '11/12/2018', 'Allan', 'Fox', 143),
+    (117, 'maratb@msn.com', '11/22/2018', '11/25/2018', 'Shari', 'Fernandez', 256),
+    (118, 'nweaver@comcast.net', '11/25/2018', '11/29/2018', 'Bonnie', 'Webster', 309),
+    (119, 'sacraver@sbcglobal.net', '11/27/2018', '11/28/2018', 'Shane', 'Harvey', 517),
+    (120, 'jcholewa@mac.com', '12/13/2018', '12/21/2018', 'Anne', 'Wells', 178),
+    (121, 'plover@verizon.net', '12/24/2018', '12/27/2018', 'Heather', 'Phillips', 238),
+    (122, 'thassine@mac.com', '12/27/2018', '1/1/2019', 'Leona', 'Watts', 222);
