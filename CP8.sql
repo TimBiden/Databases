@@ -1,7 +1,7 @@
 CREATE TABLE guests (
     first_name varchar,
     last_name varchar,
-    guest_email varchar PRIMARY KEY,
+    guest_email varchar,
     phone varchar,
     address text
 );
@@ -35,7 +35,7 @@ INSERT INTO guests
     ('Ken', 'Castillo', 'sacraver@sbcglobal.net', '(323) 808-6434', '456 Middle River Ave. Chester, PA 19013');
 
 CREATE TABLE rooms (
-    room_number integer PRIMARY KEY,
+    room_number integer,
     price_night money
 );
 
@@ -93,36 +93,35 @@ INSERT INTO rooms
     (400, 437);
 
 CREATE TABLE reservations (
-    res_id integer PRIMARY KEY,
-    res_email varchar REFERENCES guests(guest_email),
+    res_id integer,
+    res_email varchar,
     check_in date,
     check_out date,
-    first_name varchar,
-    last_name varchar,
-    room_booked integer REFERENCES rooms(room_number)
+    room_booked integer
 );
 
 INSERT INTO reservations
     VALUES
-    (101, 'tubes@yahoo.com', '3/26/2018', '3/29/2018', 'Laura', 'Burton', 451),
-    (102, 'sbmrjbr@live.com', '4/11/2018', '4/21/2018', 'Dallas', 'Jacobs', 281),
-    (103, 'shedr@yahoo.ca', '4/13/2018', '4/15/2018', 'Doyle', 'Love', 207),
-    (104, 'plover@verizon.net', '4/16/2018', '4/20/2018', 'Blanca', 'Lee', 256),
-    (105, 'enintend@aol.com', '4/29/2018', '5/3/2018', 'Loretta', 'Greene', 207),
-    (106, 'sacraver@sbcglobal.net', '6/17/2018', '6/24/2018', 'Angelo', 'Warner', 143),
-    (107, 'maratb@msn.com', '6/17/2018', '6/19/2018', 'Chelsea', 'Phelps', 152),
-    (108, 'jcholewa@mac.com', '7/18/2018', '7/24/2018', 'Ernestine', 'Ames', 164),
-    (109, 'josephw@yahoo.ca', '8/16/2018', '8/18/2018', 'Isabel', 'Kelly', 132),
-    (110, 'plover@verizon.net', '8/23/2018', '8/28/2018', 'Kate', 'Sandoval', 110),
-    (111, 'monkeydo@live.com', '8/28/2018', '9/7/2018', 'Dallas', 'Jacobs', 410),
-    (112, 'bcevc@live.com', '9/1/2018', '9/6/2018', 'Phyllis', 'Gregory', 166),
-    (113, 'ianbuck@comcast.net', '10/7/2018', '10/15/2018', 'Edwin', 'Rodriguez', 163),
-    (114, 'wmszeliga@msn.com', '10/7/2018', '10/17/2018', 'Tom', 'Pope', 140),
-    (115, 'frosal@verizon.net', '10/30/2018', '11/3/2018', 'Van', 'Bryan', 362),
-    (116, 'world@mac.com', '11/2/2018', '11/12/2018', 'Allan', 'Fox', 143),
-    (117, 'maratb@msn.com', '11/22/2018', '11/25/2018', 'Shari', 'Fernandez', 256),
-    (118, 'nweaver@comcast.net', '11/25/2018', '11/29/2018', 'Bonnie', 'Webster', 309),
-    (119, 'sacraver@sbcglobal.net', '11/27/2018', '11/28/2018', 'Shane', 'Harvey', 517),
-    (120, 'jcholewa@mac.com', '12/13/2018', '12/21/2018', 'Anne', 'Wells', 178),
-    (121, 'plover@verizon.net', '12/24/2018', '12/27/2018', 'Heather', 'Phillips', 238),
-    (122, 'thassine@mac.com', '12/27/2018', '1/1/2019', 'Leona', 'Watts', 222);
+    (101, 'tubes@yahoo.com', '3/26/2018', '3/29/2018', 451),
+    (102, 'sbmrjbr@live.com', '4/11/2018', '4/21/2018', 281),
+    (103, 'shedr@yahoo.ca', '4/13/2018', '4/15/2018', 207),
+    (104, 'plover@verizon.net', '4/16/2018', '4/20/2018', 256),
+    (105, 'enintend@aol.com', '4/29/2018', '5/3/2018', 207),
+    (106, 'sacraver@sbcglobal.net', '6/17/2018', '6/24/2018', 143),
+    (107, 'maratb@msn.com', '6/17/2018', '6/19/2018', 152),
+    (108, 'jcholewa@mac.com', '7/18/2018', '7/24/2018', 164),
+    (109, 'josephw@yahoo.ca', '8/16/2018', '8/18/2018', 132),
+    (110, 'plover@verizon.net', '8/23/2018', '8/28/2018', 110),
+    (111, 'monkeydo@live.com', '8/28/2018', '9/7/2018', 410),
+    (112, 'bcevc@live.com', '9/1/2018', '9/6/2018', 166),
+    (113, 'ianbuck@comcast.net', '10/7/2018', '10/15/2018', 163),
+    (114, 'wmszeliga@msn.com', '10/7/2018', '10/17/2018', 140),
+    (115, 'frosal@verizon.net', '10/30/2018', '11/3/2018', 362),
+    (116, 'world@mac.com', '11/2/2018', '11/12/2018', 143),
+    (117, 'maratb@msn.com', '11/22/2018', '11/25/2018', 256),
+    (118, 'nweaver@comcast.net', '11/25/2018', '11/29/2018', 309),
+    (119, 'sacraver@sbcglobal.net', '11/27/2018', '11/28/2018', 517),
+    (120, 'jcholewa@mac.com', '12/13/2018', '12/21/2018', 178),
+    (121, 'plover@verizon.net', '12/24/2018', '12/27/2018', 238),
+    (122, 'plover@verizon.net', '12/24/2018', '12/27/2018', 239),
+    (123, 'thassine@mac.com', '12/27/2018', '1/1/2019', 222);
