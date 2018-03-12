@@ -80,3 +80,6 @@
         grade           varchar(1)
 
     C)   OK.
+
+    D)  Image file is: DB Tables.png
+        Located at: https://github.com/TimBiden/Databases/commit/c2dac9b6b3f38077a5d366526603288a856a76f2#diff-a33717762d3c2c23e5a68b2683111349
