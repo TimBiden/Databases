@@ -66,3 +66,17 @@
           451 |            1
           517 |            1
         (19 rows)
+
+2.  A)  OK.
+
+    B)  student Table:
+        student_name    varchar
+        student_id      serial
+
+        classes_taken Table:
+        class_id        varchar(7)
+        class_name      varchar
+        student_id      integer
+        grade           varchar(1)
+
+    C)   OK.
