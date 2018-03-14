@@ -250,15 +250,13 @@
          The Administration of Justice System           |     8
         (27 rows)
 
-    D)  college=# SELECT MAX(nothing.my_count)
-        college-# FROM (
-        college(#     SELECT class_list.class_name AS my_name, COUNT(classes_taken.class_id) AS my_count
-        college(#     FROM class_list
-        college(#     JOIN classes_taken ON class_list.class_id = classes_taken.class_id
-        college(#     GROUP BY class_list.class_name
-        college(#     ORDER BY class_list.class_name
-        college(# ) AS nothing;
-         max
-        -----
-           9
+    D)  college=# SELECT class_list.class_name AS my_name, COUNT(classes_taken.class_id) AS my_count
+        college-# FROM class_list
+        college-# JOIN classes_taken ON class_list.class_id = classes_taken.class_id
+        college-# GROUP BY class_list.class_name
+        college-# ORDER BY class_list.class_name
+        college-# LIMIT 1;
+                 my_name          | my_count
+        --------------------------+----------
+         Advanced C++ Programming |        7
         (1 row)
